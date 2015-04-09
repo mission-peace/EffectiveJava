@@ -104,6 +104,11 @@ public class StreamsExample {
         
     }
     
+    public void joinNames(List<String> names){
+        String str = names.stream().collect(Collectors.joining(","));
+        System.out.println(str);
+    }
+    
     public static void main(String args[]){
         System.out.println("------PrintList-----");
         List<String> names = Arrays.asList("Tush", "Ani", "Donner", "Jabber", "Tany");
@@ -131,6 +136,8 @@ public class StreamsExample {
         se.maxMinSize(names);
         System.out.println("----Max min length strings in list-----");
         se.maxMinNames(names);
+        System.out.println("----Joined names-----");
+        se.joinNames(names);
     }
     
 }
