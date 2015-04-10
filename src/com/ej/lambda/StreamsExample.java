@@ -1,6 +1,9 @@
 package com.ej.lambda;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.OptionalInt;
@@ -115,6 +118,29 @@ public class StreamsExample {
         names.forEach(name -> name.chars().mapToObj(val -> Character.valueOf((char)val)).forEach(System.out::print));
     }
     
+    public void useComparator(List<String> names){
+        List<String> names1 = new ArrayList<>(names);
+        Comparator<String> comparator = (name1, name2) -> {
+            if(name1.compareTo(name2) >= 0){
+                return -1;
+            }else{
+                return 0;
+                
+            }
+        };
+        Collections.sort(names1, ((name1, name2) -> {
+            if(name1.compareTo(name2) >= 0){
+                return -1;
+            }else{
+                return 1;
+            }
+        }));
+        names1.forEach(System.out::println);
+        
+        names1 = names.stream().sorted(comparator).collect(Collectors.toList());
+        names1.forEach(System.out::println);
+    }
+    
     public static void main(String args[]){
         System.out.println("------PrintList-----");
         List<String> names = Arrays.asList("Tush", "Ani", "Donner", "Jabber", "Tany");
@@ -146,6 +172,10 @@ public class StreamsExample {
         se.joinNames(names);
         System.out.println("----Print all characters----");
         se.printAllCharacters(names);
+        System.out.println("----Use Comparator interface----");
+        se.useComparator(names);
+        
+        
     }
     
 }
