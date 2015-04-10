@@ -109,6 +109,12 @@ public class StreamsExample {
         System.out.println(str);
     }
     
+    public void printAllCharacters(List<String> names){
+        names.forEach(name -> name.chars().forEach(ch -> System.out.print((char)ch)));
+        System.out.println();
+        names.forEach(name -> name.chars().mapToObj(val -> Character.valueOf((char)val)).forEach(System.out::print));
+    }
+    
     public static void main(String args[]){
         System.out.println("------PrintList-----");
         List<String> names = Arrays.asList("Tush", "Ani", "Donner", "Jabber", "Tany");
@@ -138,6 +144,8 @@ public class StreamsExample {
         se.maxMinNames(names);
         System.out.println("----Joined names-----");
         se.joinNames(names);
+        System.out.println("----Print all characters----");
+        se.printAllCharacters(names);
     }
     
 }
