@@ -97,6 +97,23 @@ public class StreamsExample {
         OptionalInt min = names.stream().mapToInt(name -> name.length()).min();
         max.ifPresent(System.out::println);
         min.ifPresent(System.out::println);
+        
+        Optional<String> minLengthName = names.stream().min((name1, name2) -> {
+            if(name1.length() < name2.length()){
+                return -1;
+            }else{
+                return 1;
+            }
+        });
+        minLengthName.ifPresent(System.out::println);
+        Optional<String> maxLengthName = names.stream().min((name1, name2) -> {
+            if(name1.length() > name2.length()){
+                return -1;
+            }else{
+                return 1;
+            }
+        });
+        maxLengthName.ifPresent(System.out::println);
     }
     
     public void maxMinNames(List<String> names){
